@@ -1,0 +1,17 @@
+---
+iso_checksum: "FFBCD49D7BD6A1C1A49E830384272BEC"
+iso_url: "ISO/Windows Server 2022.iso"
+winrm_timeout: "5h"
+cpus: 4
+disk_size: 131072 # In MB's
+memory: 2048 # In MB's
+enable_secure_boot: true
+communicator: "winrm"
+secure_boot_template: "MicrosoftWindows"
+cd_files:
+          - "answer_files/Server.2022/Autounattend.xml"
+          - "scripts/winrm.ps1"
+hyperv_shutdown_command: "shutdown /s /t 10 /f /d p:4:1 /c Packer_Provisioning_Shutdown"
+switch: "Default Switch"
+winrm_password: "password"
+winrm_username: "Administrator"
