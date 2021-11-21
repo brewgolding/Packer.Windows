@@ -78,6 +78,10 @@
             </ImageInstall>
             <UserData>
                 <AcceptEula>true</AcceptEula>
+                <ProductKey>
+                    <WillShowUI>Never</WillShowUI>
+                    <Key>WX4NM-KYWYW-QJJR4-XV3QB-6VM33</Key>
+                </ProductKey>
             </UserData>
         </component>
     </settings>

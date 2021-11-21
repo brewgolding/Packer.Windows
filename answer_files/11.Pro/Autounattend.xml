@@ -86,8 +86,8 @@
                 <OSImage>
                     <InstallFrom>
                         <MetaData wcm:action="add">
-                            <Key>/IMAGE/INDEX</Key>
-                            <Value>1</Value>
+                            <Key>/IMAGE/NAME</Key>
+                            <Value>Windows 10 Pro</Value>
                         </MetaData>
                     </InstallFrom>
                     <InstallTo>
@@ -100,6 +100,10 @@
             </ImageInstall>
             <UserData>
                 <AcceptEula>true</AcceptEula>
+                    <ProductKey>
+                    <WillShowUI>Never</WillShowUI>
+                    <Key>W269N-WFGWX-YVC9B-4J6C9-T83GX</Key>
+                </ProductKey>
             </UserData>
         </component>
     </settings>

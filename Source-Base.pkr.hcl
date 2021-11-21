@@ -14,4 +14,5 @@ source "hyperv-iso" "Base-EFI-ISO" {
   winrm_password       = var.winrm_password
   winrm_timeout        = "${var.winrm_timeout}"
   winrm_username       = var.winrm_username
+  headless             = true
 }

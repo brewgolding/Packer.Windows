@@ -4,15 +4,23 @@ build:
   yaml_path: variables.yaml
   json_output: variables.pkr.json
 server_2022:
-  iso_checksum: "064B69D7E35689ACF518FA8F80269DAD"
-  iso_url: "https://software-download.microsoft.com/download/sg/20348.169.210806-2348.fe_release_svc_refresh_SERVER_EVAL_x64FRE_en-us.iso"
+  name: "Windows-Server-2022-Datacenter-Core-EFI"
+  iso_checksum: "FFBCD49D7BD6A1C1A49E830384272BEC"
+  iso_url: "ISO/Windows Server 2022.iso"
   unattended_xml: "answer_files/Server.2022/Autounattend.xml"
   product_key: "WX4NM-KYWYW-QJJR4-XV3QB-6VM33"
 windows_11_enterprise:
+  name: "Windows-11-Enterprise-Base-EFI"
   iso_checksum: "86034E9DA681217E0C7D8A23A27BCF13"
   iso_url: "https://software-download.microsoft.com/download/sg/22000.194.210913-1444.co_release_svc_refresh_CLIENTENTERPRISEEVAL_OEMRET_x64FRE_en-us.iso"
   unattended_xml: "answer_files/11.Enterprise/Autounattend.xml"
   product_key: "NPPR9-FWDCX-D2C8J-H872K-2YT43"
+windows_11_pro:
+  name: "Windows-11-Pro-Base-EFI"
+  iso_checksum: "1F7840814B672457482AE77A70ACE03F"
+  iso_url: "ISO/Windows 11.iso"
+  unattended_xml: "answer_files/11.Pro/Autounattend.xml"
+  product_key: "W269N-WFGWX-YVC9B-4J6C9-T83GX"
 winrm_timeout: "5h"
 # Is mounted in CD for execution on first boot
 winrm_setup_script: "scripts/winrm.ps1"

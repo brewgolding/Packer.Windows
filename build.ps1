@@ -23,6 +23,6 @@ if ($Force) {
 $variables.variables = cat $PSScriptRoot\variables.yaml | ConvertFrom-Yaml -AsHashtable
 $build = $variables.variables.build
 #Outputs packer variable .pkr.json
-$variables | ConvertTo-Json | Out-File $build.json_output
+$variables | ConvertTo-Json -Depth 10 | Out-File $build.json_output
 packer init .
 $order | % {packer $BuildType -only="$($_)" $_force .}

@@ -9,4 +9,6 @@ source "hyperv-vmcx" "Base-EFI-VMCX" {
   winrm_password       = var.winrm_password
   winrm_timeout        = var.winrm_timeout
   winrm_username       = var.winrm_username
+  generation           = 2
+  headless             = true
 }
