@@ -1,5 +1,4 @@
-source "hyperv-vmcx" "Windows-Server-Datacenter-Core-VMCX" {
-  clone_from_vmcx_path = "output-Windows-Server-2022-Datacenter-Core-ISO/"
+source "hyperv-vmcx" "Base-EFI-VMCX" {
   communicator         = var.communicator
   cpus                 = var.cpus
   enable_secure_boot   = var.enable_secure_boot
