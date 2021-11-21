@@ -1,5 +1,5 @@
 *.iso
 /packer_cache*
 /out*
-*.json
+/*.json
 *.zip
