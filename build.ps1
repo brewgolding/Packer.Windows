@@ -12,7 +12,7 @@ param (
 
 $order = @(
   "Base-Install.*",
-  "Compress.*"
+  "DSCProvision.*"
 )
 # Start CONFIG SETUP
 $variables = @{}
