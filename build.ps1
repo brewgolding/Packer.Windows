@@ -1,28 +1,13 @@
-[CmdletBinding()]
-param (
-    [Parameter(Mandatory = $false)]
-    [ValidateNotNullOrEmpty()]
-    [ValidateSet('build','validate','inspect')]
-    [string]
-    $BuildType = "build",
-    [switch]
-    $Force
-)
+$ErrorActionPreference = 'Stop'
 
+Set-Location -LiteralPath $PSScriptRoot
 
-$order = @(
-  "Base-Install.*",
-  "DSCProvision.*"
-)
-# Start CONFIG SETUP
-$variables = @{}
-if ($Force) {
-    $_force = "-force"
-}
-# Converters yaml to a nested variables hashtable. This is so packer can autoload it as a json.
-$variables.variables = cat $PSScriptRoot\variables.yaml | ConvertFrom-Yaml -AsHashtable
-$build = $variables.variables.build
-#Outputs packer variable .pkr.json
-$variables | ConvertTo-Json -Depth 10 | Out-File $build.json_output
-packer init .
-$order | % {packer $BuildType -only="$($_)" $_force .}
+$env:DOTNET_SKIP_FIRST_TIME_EXPERIENCE = '1'
+$env:DOTNET_CLI_TELEMETRY_OPTOUT = '1'
+$env:DOTNET_NOLOGO = '1'
+
+dotnet tool restore
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+dotnet cake @args
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
