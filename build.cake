@@ -1,4 +1,6 @@
 using System.IO;
+using Cake.Core.Packaging;
+
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 using System.Dynamic;
@@ -71,7 +73,13 @@ Task("Build DSCProvision")
     var packerPath = new FilePath("packer");
     StartProcess(packerPath, "build -only=DSCProvision.* .");
     });
-  
+
+Task("Pack")
+  .IsDependentOn("Build DSCProvision")
+  .Does(() =>
+  {
+    });
+
 Task("Build")
     .IsDependentOn("Build DSCProvision")
     .Does(() =>

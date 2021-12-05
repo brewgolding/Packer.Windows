@@ -7,6 +7,7 @@ NUGET
     Cake (1.3)
     Cake.CoreCLR (1.3)
     JetBrains.ReSharper.CommandLineTools (2021.2.2)
+    Paket (6.2.1)
 
 GROUP ../tools/addins
 RESTRICTION: == net5.0
@@ -21,3 +22,8 @@ RESTRICTION: == net5.0
 NUGET
   remote: https://api.nuget.org/v3/index.json
     Cake.Paket.Module (4.0)
+
+GROUP ../tools/powershellModules
+NUGET
+  remote: https://www.powershellgallery.com/api/v2
+    psyml (1.0.0)

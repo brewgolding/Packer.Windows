@@ -7,3 +7,5 @@
 packages/*
 paket-files/*
 tools/*
+build/*Production/*
+build/*Dev/*

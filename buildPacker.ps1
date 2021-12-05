@@ -8,7 +8,8 @@ param (
     [switch]
     $Force
 )
-
+& dotnet paket restore
+Import-Module -Name "$PSScriptRoot/tools/powershellmodules/psyml" -Force -Verbose
 
 $order = @(
   "Base-Install.*",

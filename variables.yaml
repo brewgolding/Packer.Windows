@@ -5,19 +5,19 @@ build:
   json_output: variables.pkr.json
   directory: "build"
 server_2022:
-  name: "Windows-Server-2022-Datacenter-Core-EFI"
+  name: "ServerDataCenterCore"
   iso_checksum: "FFBCD49D7BD6A1C1A49E830384272BEC"
   iso_url: "ISO/Windows Server 2022.iso"
   unattended_xml: "answer_files/Server.2022/Autounattend.xml"
   product_key: "WX4NM-KYWYW-QJJR4-XV3QB-6VM33"
 windows_11_enterprise:
-  name: "Windows-11-Enterprise-Base-EFI"
+  name: "Windows11Enterprise"
   iso_checksum: "86034E9DA681217E0C7D8A23A27BCF13"
   iso_url: "https://software-download.microsoft.com/download/sg/22000.194.210913-1444.co_release_svc_refresh_CLIENTENTERPRISEEVAL_OEMRET_x64FRE_en-us.iso"
   unattended_xml: "answer_files/11.Enterprise/Autounattend.xml"
   product_key: "NPPR9-FWDCX-D2C8J-H872K-2YT43"
 windows_11_pro:
-  name: "Windows-11-Pro-Base-EFI"
+  name: "Windows11Pro"
   iso_checksum: "1F7840814B672457482AE77A70ACE03F"
   iso_url: "ISO/Windows 11.iso"
   unattended_xml: "answer_files/11.Pro/Autounattend.xml"
