@@ -6,11 +6,11 @@ $env:DOTNET_SKIP_FIRST_TIME_EXPERIENCE = '1'
 $env:DOTNET_CLI_TELEMETRY_OPTOUT = '1'
 $env:DOTNET_NOLOGO = '1'
 
-dotnet tool restore
+$paket = ".paket/paket.exe"
+$cake = "tools/cake/cake.exe"
+
+& $paket install
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
-dotnet paket restore
-if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-
-dotnet cake @args
+& $cake @args
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
