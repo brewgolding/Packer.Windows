@@ -1,26 +1,21 @@
-using System.Reflection.Metadata.Ecma335;
 using System.IO;
-using System.IO;
-
-using System.IO;
-
-using System;
 using YamlDotNet.Serialization;
+using YamlDotNet.Serialization.NamingConventions;
+using System.Dynamic;
+using System;
 using Newtonsoft.Json;
 
 // addins
-#addin nuget:?package=Cake.Powershell&version=1.0.1
-#addin nuget:?package=YamlDotNet&version=11.2.1
-#addin nuget:?package=Newtonsoft.Json&version=13.0.1
+#addin nuget:?package=YamlDotNet
+#addin nuget:?package=Newtonsoft.Json
 
 // tools
-#tool nuget:?package=Cake.CoreCLR&version=1.3.0
+#tool paket:?package=Cake.CoreCLR
 
 //////////////////////////////////////////////////////////////////////
 // ARGUMENTS
 //////////////////////////////////////////////////////////////////////
-
-var target = Argument("target", "BuildBaseInstall");
+var target = Argument("target", "Build");
 var configuration = Argument("configuration", "NonProduction");
 var variablesFile = Argument("variablesFile","variables.yaml");
 
@@ -46,41 +41,45 @@ Task("Configure")
     .IsDependentOn("Clean")
     .Does(() =>
     {
-      var yamlString = System.IO.File.ReadAllText(variablesFile);
-      var yamlStringReader = new StringReader(yamlString);
-      var deserializer = new Deserializer();
-      dynamic yamlObject = deserializer.Deserialize(yamlStringReader);
-      dynamic expando = new System.Dynamic.ExpandoObject();
-      expando.variables = yamlObject;
-      yamlObject = expando;
+      var deserializer = new YamlDotNet.Serialization.DeserializerBuilder()
+        .WithNamingConvention(CamelCaseNamingConvention.Instance)
+        .Build();
+      dynamic yamlObject = new {
+        variables = deserializer.Deserialize<ExpandoObject>(System.IO.File.ReadAllText(variablesFile))
+      };
+      //Replaces the yamlconfig build.directory with the variable buildDir
+      yamlObject.variables.build["directory"] = buildDir.ToString();
       var jsonSerializer = new JsonSerializer();
       var stringWriter = new StringWriter();
       jsonSerializer.Serialize(stringWriter, yamlObject);
-      //Console.SetOut(stringWriter);
       System.IO.File.WriteAllText("variables.pkr.json", stringWriter.ToString());
     }
 
     );
-Task("BuildBaseInstall")
-    .IsDependentOn("Configure")
-    .Does(() =>
-{
-    Console.WriteLine("Building");
+
+Task("Build Base Install")
+  .IsDependentOn("Configure")
+  .Does(() =>
+  {
     var packerPath = new FilePath("packer");
     StartProcess(packerPath, "build -only=Base-Install.* .");
-});
-/*
-Task("Test")
-    .IsDependentOn("Build")
+    });
+Task("Build DSCProvision")
+  .IsDependentOn("Build Base Install")
+  .Does(() =>
+  {
+    var packerPath = new FilePath("packer");
+    StartProcess(packerPath, "build -only=DSCProvision.* .");
+    });
+  
+Task("Build")
+    .IsDependentOn("Build DSCProvision")
     .Does(() =>
 {
-    DotNetCoreTest("./src/Example.sln", new DotNetCoreTestSettings
-    {
-        Configuration = configuration,
-        NoBuild = true,
-    });
+  Console.WriteLine("Build Complete");
 });
-*/
+
+
 //////////////////////////////////////////////////////////////////////
 // EXECUTION
 //////////////////////////////////////////////////////////////////////

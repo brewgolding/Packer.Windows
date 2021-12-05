@@ -4,3 +4,6 @@
 /*.json
 *.zip
 *.mof
+packages/*
+paket-files/*
+tools/*

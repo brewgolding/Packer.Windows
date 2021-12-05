@@ -3,6 +3,7 @@
 build:
   yaml_path: variables.yaml
   json_output: variables.pkr.json
+  directory: "build"
 server_2022:
   name: "Windows-Server-2022-Datacenter-Core-EFI"
   iso_checksum: "FFBCD49D7BD6A1C1A49E830384272BEC"

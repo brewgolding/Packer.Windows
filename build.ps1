@@ -9,5 +9,8 @@ $env:DOTNET_NOLOGO = '1'
 dotnet tool restore
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
+dotnet paket restore
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
 dotnet cake @args
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }

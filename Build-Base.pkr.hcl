@@ -15,7 +15,7 @@ build {
     iso_url              = "${var.server_2022.iso_url}"
     cd_files             = [var.server_2022.unattended_xml, var.winrm_setup_script]
     vm_name = "packer-${var.server_2022.name}"
-    output_directory = "Out/${var.server_2022.name}"
+    output_directory = "${var.build.directory}/${var.server_2022.name}"
   }
 
   source "hyperv-iso.Base-EFI-ISO" {
@@ -24,7 +24,7 @@ build {
     iso_checksum         = "md5:${var.windows_11_pro.iso_checksum}"
     iso_url              = "${var.windows_11_pro.iso_url}"
     vm_name = "packer-${var.windows_11_pro.name}"
-    output_directory = "Out/${var.windows_11_pro.name}"
+    output_directory = "${var.build.directory}/${var.windows_11_pro.name}"
   }
 
   provisioner "windows-update" {
