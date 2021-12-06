@@ -6,7 +6,8 @@ Currently this repo with the use of packer outputs the following images;
 | --- | --- | --- |
 | Windows11Pro | ./build/NonProduction/Windows11Pro | Windows 11 Base Install (KMS activated) with Chocolatey provisioned via DSC |
 | ServerDataCenterCore | ./build/NonProduction/ServerDataCenterCore | Windows Server 2022 Base Install (KMS activated) with Chocolatey provisioned via DSC |
-| 
+| Base.Windows11Pro | ./build/NonProduction/Base.Windows11Pro | Windows 11 Base Install (KMS activated) |
+| Base.ServerDataCenterCore | ./build/NonProduction/Base.ServerDataCenterCore | Windows Server 2022 Base Install (KMS activated). |
 
 ## Build Instructions 
 
