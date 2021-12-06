@@ -78,6 +78,7 @@ Task("Pack")
   .IsDependentOn("Build DSCProvision")
   .Does(() =>
   {
+    
     });
 
 Task("Build")

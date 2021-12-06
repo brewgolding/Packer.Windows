@@ -3,7 +3,7 @@
 build:
   yaml_path: variables.yaml
   json_output: variables.pkr.json
-  directory: "build"
+  directory: "build/NonProduction"
 server_2022:
   name: "ServerDataCenterCore"
   iso_checksum: "FFBCD49D7BD6A1C1A49E830384272BEC"
