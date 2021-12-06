@@ -8,7 +8,12 @@ param (
     [switch]
     $Force
 )
-& dotnet paket restore
+# Paket handles dependencies
+$paket = ".paket/paket.exe"
+
+& $paket install
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
 Import-Module -Name "$PSScriptRoot/tools/powershellmodules/psyml" -Force -Verbose
 
 $order = @(
